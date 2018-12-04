@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 import './Sidebar.css'
 
@@ -7,9 +8,11 @@ export default class Sidebar extends React.Component {
 		return (
 			<div className="Sidebar">
 				<div className="Sidebar__Chats">
-					<div className="Sidebar__Menu">
-						<div className="Title__Text">Меню</div>
-					</div>
+					<NavLink to ="/menu" className="Link" activateClassName="Link--Active">
+						<div className="Sidebar__Menu">
+							<div className="Title__Text">Меню</div>
+						</div>
+					</NavLink>
 					<div className="Chat-Active">
 						<div className="Title__Text">Чат 1</div>
 					</div>

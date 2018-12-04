@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import Title from './components/Title/Title.js'
-import Sidebar from './components/Sidebar/Sidebar.js'
-import MessageForm from './components/MessageForm/MessageForm.js'
-import MessageBox from './components/MessageBox/MessageBox.js'
+import Title from './components/Title/Title.js';
+import Sidebar from './components/Sidebar/Sidebar.js';
+import MessageForm from './components/MessageForm/MessageForm.js';
+import MessageBox from './components/MessageBox/MessageBox.js';
+import Menu from './components/Menu/Menu.js';
+import CreateAccount from './components/CreateAccount/createaccount.js'
+import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 
 import database from './firebase/database.js'
 
@@ -36,11 +39,16 @@ class App extends Component {
 
   render() {
     return (
+      <Router>
       <div className="App">
         <div className="App__Layout">
-          <div className="App__Sidebar">
-          <Sidebar/>
-          </div>
+            <div className="App__Sidebar">
+              <Switch>
+                <Route path="/" exact component={Sidebar}></Route>
+                <Route path="/menu" component={Menu}></Route>
+                <Route path="/create-acc" component={CreateAccount}></Route>
+              </Switch>
+            </div>  
           <div className="App__Content">
             <div className="Title">
               <Title />
@@ -57,6 +65,7 @@ class App extends Component {
           </div>
         </div>
       </div>
+      </Router>
     );
   }
 }
