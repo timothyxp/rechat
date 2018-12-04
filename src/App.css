@@ -1,0 +1,40 @@
+.App {
+	max-width: 600px;
+}
+
+.App__Layout {
+	display: flex;
+	height: 100%;
+	flex-direction: row;
+}
+
+.App__Content {
+	flex:none;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	min-width: 80vw;
+}
+
+.App__Sidebar {
+	min-width: 20vw;
+}
+
+.App__MessageForm {
+	min-height: 10%;
+	max-height: 10%;
+	display: flex;
+	align-items: center;
+	background-color: #fafbfc;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #e3e4e8;
+}
+
+.App__MessageBox {
+	min-height: 80%
+}
+
+.Title {
+	min-height: 5%;
+}

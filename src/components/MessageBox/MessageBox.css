@@ -1,0 +1,16 @@
+.MessageBox {
+	background-image: url(../../images/5rVml.png);
+	min-height: 80vh;
+	background-color: #97adc3;
+	display: flex;
+	flex-direction: column;
+	overflow-y: scroll;
+}
+
+.AnotherMessage {
+	align-self: flex-start;
+}
+
+.YourMessage {
+	align-self: flex-end;
+}
