@@ -8,7 +8,7 @@ export default class Sidebar extends React.Component {
 		return (
 			<div className="Sidebar">
 				<div className="Sidebar__Chats">
-					<NavLink to ="/menu" className="Link" activateClassName="Link--Active">
+					<NavLink to ="/menu" className="Link" activeClassName="Link--Active">
 						<div className="Sidebar__Menu">
 							<div className="Title__Text">Меню</div>
 						</div>

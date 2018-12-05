@@ -4,7 +4,8 @@ import Sidebar from './components/Sidebar/Sidebar.js';
 import MessageForm from './components/MessageForm/MessageForm.js';
 import MessageBox from './components/MessageBox/MessageBox.js';
 import Menu from './components/Menu/Menu.js';
-import CreateAccount from './components/CreateAccount/createaccount.js'
+import CreateAccount from './components/Menu/CreateAccount/createaccount.js';
+import Enter from './components/Menu/Enter/enter.js';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 
 import database from './firebase/database.js'
@@ -17,23 +18,31 @@ class App extends Component {
 
     this.state = {
       accountId:Math.floor(Math.random()*(1e9)),
-      name:'Young',
+      name:'user',
       messages:{}
     }
   }
 
   NewMessage = event => {
-    database.ref('messages').push(event);
+    database.ref('messages').push({...event,...{name:this.state.name}});
   }
 
   createAccount = account => {
-    console.log(account);
-    database.ref('accounts'+account.login).push(
-      {password:account.password,
-        accountId:this.state.accountId}
-      );
+    database.ref('accounts/'+account.login).set({
+        password:account.password,
+        accountId:this.state.accountId,
+        name:account.name
+      });
     this.setState({
       name:account.name
+    });
+  }
+
+  enter = event => {
+    console.log(event);
+    this.setState({
+      name:event.name,
+      accountId:event.accountId
     });
   }
 
@@ -55,11 +64,12 @@ class App extends Component {
         <div className="App__Layout">
             <div className="App__Sidebar">
               <Switch>
-                <Route path="/" exact component={Sidebar}></Route>
-                <Route path="/menu" component={Menu}></Route>
+                <Route path="/" exact component={Sidebar}/>
+                <Route path="/menu" component={Menu}/>
                 <Route path="/create-acc" component={
-                  ()=><CreateAccount send={this.createAccount}/>}>
-                  </Route>
+                  ()=><CreateAccount send={this.createAccount}/>}/>
+                <Route path="/enter" component={
+                  ()=><Enter onSubmit={this.enter}/>}/>
               </Switch>
             </div>  
           <div className="App__Content">
@@ -68,8 +78,7 @@ class App extends Component {
             </div>
             <div className="App__MessageBox">
               <MessageBox accountId={this.state.accountId}
-              messages={this.state.messages}
-              name={this.state.name}/>
+              messages={this.state.messages}/>
             </div>
             <div className="App__MessageForm">
               <MessageForm accountId={this.state.accountId}

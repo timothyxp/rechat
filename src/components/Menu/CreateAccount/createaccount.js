@@ -1,6 +1,6 @@
 import React from 'react';
-import FormColumn from '../FormColumn/Form.js';
-import FormText from '../FormText/FormText.js';
+import FormColumn from '../../FormColumn/Form.js';
+import FormText from '../../FormText/FormText.js';
 import {NavLink} from 'react-router-dom';
 
 class CreateAccount extends React.Component {
@@ -13,12 +13,20 @@ class CreateAccount extends React.Component {
 		};
 	}
 
+	clearForm() {
+		this.setState({
+			name:'',
+			login:'',
+			password:''
+		});
+	}
+
 	handleSubmit = event => {
 		event.preventDefault();
-		console.log(this.props);
 
-		console.log(this.state);
 		this.props.send(this.state);
+
+		this.clearForm();
 	}
 
 	handleInputChange = event => {

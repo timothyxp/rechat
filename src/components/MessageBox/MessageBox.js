@@ -13,12 +13,12 @@ export default class MessageBox extends React.Component {
 					if(this.props.accountId===message.accountId )
 						return <div className="YourMessage" key={index}>
 						<Message color ={message.accountId%3}
-						 name={this.props.name}>{message.message}</Message>
+						 name={message.name}>{message.message}</Message>
 						</div>
 					else 
 						return <div className="AnotherMessage" key={index}>
 						<Message color ={message.accountId%3}
-						name={this.props.name}>{message.message}</Message>
+						name={message.name}>{message.message}</Message>
 						</div>
 				})}
 			</div>

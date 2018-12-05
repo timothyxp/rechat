@@ -4,19 +4,16 @@ import {NavLink} from 'react-router-dom';
 import './Menu.css';
 
 class Menu extends React.Component {
-	constructor() {
-		super();
-	}
 	render() {
 		return(
 			<div>
-				<NavLink to ="/" className="Link" activateClassName="Link--Active">
+				<NavLink to ="/" className="Link" activeClassName="Link--Active">
 					<div>Назад</div>
 				</NavLink>
-				<NavLink to ="/create-acc" className="Link" activateClassName="Link--Active">
+				<NavLink to ="/create-acc" className="Link" activeClassName="Link--Active">
 					<div>создать</div>
 				</NavLink>
-				<NavLink to = "/enter" className="Link" activateClassName="Link--Active">
+				<NavLink to = "/enter" className="Link" activeClassName="Link--Active">
 					<div>войти</div>
 				</NavLink>
 			</div>
