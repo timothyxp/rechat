@@ -26,6 +26,17 @@ class App extends Component {
     database.ref('messages').push(event);
   }
 
+  createAccount = account => {
+    console.log(account);
+    database.ref('accounts'+account.login).push(
+      {password:account.password,
+        accountId:this.state.accountId}
+      );
+    this.setState({
+      name:account.name
+    });
+  }
+
   componentDidMount() {
     const MessageRef = database.ref('messages');
 
@@ -46,7 +57,9 @@ class App extends Component {
               <Switch>
                 <Route path="/" exact component={Sidebar}></Route>
                 <Route path="/menu" component={Menu}></Route>
-                <Route path="/create-acc" component={CreateAccount}></Route>
+                <Route path="/create-acc" component={
+                  ()=><CreateAccount send={this.createAccount}/>}>
+                  </Route>
               </Switch>
             </div>  
           <div className="App__Content">

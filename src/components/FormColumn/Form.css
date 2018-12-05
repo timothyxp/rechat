@@ -1,6 +1,6 @@
-.MessageForm {
+.MessageFormColumn {
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	height: 100%;
 	align-items:center;
 }

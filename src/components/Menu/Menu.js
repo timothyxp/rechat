@@ -16,6 +16,9 @@ class Menu extends React.Component {
 				<NavLink to ="/create-acc" className="Link" activateClassName="Link--Active">
 					<div>создать</div>
 				</NavLink>
+				<NavLink to = "/enter" className="Link" activateClassName="Link--Active">
+					<div>войти</div>
+				</NavLink>
 			</div>
 		);
 	}

@@ -1,6 +1,6 @@
 import React from 'react'
 import FormText from '../FormText/FormText.js'
-import Form from './Form/Form.js'
+import Form from '../FormRow/Form.js'
 import './MessageForm.css'
 
 export default class MessageFrom extends React.Component {
