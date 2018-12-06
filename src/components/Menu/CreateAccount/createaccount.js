@@ -1,6 +1,7 @@
 import React from 'react';
 import FormColumn from '../../FormColumn/Form.js';
 import FormText from '../../FormText/FormText.js';
+import Button from '../../Button/Button.js';
 import {NavLink} from 'react-router-dom';
 
 class CreateAccount extends React.Component {
@@ -38,9 +39,14 @@ class CreateAccount extends React.Component {
 	render() {
 		return (
 			<div>
-				<NavLink to="/menu"className="Link" activateClassName="Link--Active">
-					Назад
+				<NavLink to="/menu"className="Link" activeClassName="Link--Active">
+					<div className="Sidebar__Menu">
+						<div className="Sidebar__Chat__Border">
+							<div className="Title__Text">Назад</div>
+						</div>
+					</div>
 				</NavLink>
+				<br/>
 				<FormColumn onSubmit={this.handleSubmit}>
 					<FormText name="name" 
 					onChange={this.handleInputChange}
@@ -54,7 +60,8 @@ class CreateAccount extends React.Component {
 					onChange={this.handleInputChange}
 					value={this.state.password}
 					placeholder="Введите Пароль"/>
-					<button type="submit">Создать аккаунт</button>
+					<br/>
+					<Button type="submit">Создать аккаунт</Button>
 				</FormColumn>
 			</div>
 		);

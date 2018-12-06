@@ -8,14 +8,12 @@ export default class MessageFrom extends React.Component {
 		super(props);
 
 		this.state = {
-			accountId:props.accountId,
 			message:''
 		}
 	}
 
 	formClear() {
 		this.setState({
-			accountId:this.props.accountId,
 			message:''
 		});
 	}

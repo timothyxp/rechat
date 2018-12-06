@@ -19,14 +19,25 @@
 	overflow: hidden;	
 }
 
+.Sidebar__Chats {
+	display: flex;
+	flex-direction: column;
+}
+
 .Sidebar__Chats > div {
 	border-width: 1px 1px 0px;
 	border-color: black;
 	border-style: solid;
 }
 
-.Sidebar__Chats :last-child {
+.Sidebar__Chat__Border {
 	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+}
+
+.Sidebar__Chats :last-child {
+	border-width: 1px 1px 0px;
 	border-color: black;
 	border-style: solid;
 }

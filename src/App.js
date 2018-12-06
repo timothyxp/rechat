@@ -24,7 +24,10 @@ class App extends Component {
   }
 
   NewMessage = event => {
-    database.ref('messages').push({...event,...{name:this.state.name}});
+    database.ref('messages').push({...event,...{
+      name:this.state.name,
+      accountId:this.state.accountId
+    }});
   }
 
   createAccount = account => {
@@ -46,11 +49,16 @@ class App extends Component {
     });
   }
 
+  getAccountId() {
+    return this.state.accountId;
+  }
+
   componentDidMount() {
     const MessageRef = database.ref('messages');
 
     MessageRef.on('value', snapshot => {
       let items = snapshot.val();
+      console.log(items);
       this.setState({
         messages:{...this.state.messages, ...items}
       });
@@ -81,8 +89,7 @@ class App extends Component {
               messages={this.state.messages}/>
             </div>
             <div className="App__MessageForm">
-              <MessageForm accountId={this.state.accountId}
-              handleSubmit = {this.NewMessage}/>
+              <MessageForm handleSubmit = {this.NewMessage}/>
             </div>
           </div>
         </div>

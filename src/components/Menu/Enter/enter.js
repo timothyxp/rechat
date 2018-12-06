@@ -1,6 +1,7 @@
 import React from 'react';
 import FormColumn from '../../FormColumn/Form.js';
 import FormText from '../../FormText/FormText.js';
+import Button from '../../Button/Button.js';
 import {NavLink} from 'react-router-dom';
 import './enter.css';
 
@@ -62,8 +63,13 @@ export default class Enter extends React.Component {
 		return (
 			<div>
 				<NavLink to="/menu" className="Link" activeClassName="Link--Active">
-					Назад
+					<div className="Sidebar__Menu">
+						<div className="Sidebar__Chat__Border">
+							<div className="Title__Text">Назад</div>
+						</div>
+					</div>
 				</NavLink>
+				<br/>
 				<FormColumn onSubmit={this.handleSubmit}>
 					<FormText name="login" 
 					onChange={this.handleInputChange}
@@ -73,7 +79,8 @@ export default class Enter extends React.Component {
 					onChange={this.handleInputChange}
 					value={this.state.password}
 					placeholder="Введите Пароль"/>
-					<button type="submit">Войти</button>
+					<br/>
+					<Button type="submit">Войти</Button>
 				</FormColumn>
 				{this.state.error ? <div>Неправильный логин или пароль</div>:<div></div>}
 			</div>
