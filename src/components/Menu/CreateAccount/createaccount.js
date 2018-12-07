@@ -4,13 +4,16 @@ import FormText from '../../FormText/FormText.js';
 import Button from '../../Button/Button.js';
 import {NavLink} from 'react-router-dom';
 
+import database from '../../../firebase/database.js';
+
 class CreateAccount extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 			name:'',
 			login:'',
-			password:''
+			password:'',
+			isContain:false
 		};
 	}
 
@@ -22,12 +25,36 @@ class CreateAccount extends React.Component {
 		});
 	}
 
+	validationForm() {
+		if(this.state.name==='' 
+			|| this.state.pasword==='' 
+			|| this.state.login==='')
+			return false;
+		return true;
+	}
+
 	handleSubmit = event => {
 		event.preventDefault();
 
-		this.props.send(this.state);
+		if(!this.validationForm())
+			return;
 
-		this.clearForm();
+		const AccountRef=database.ref('accounts/'+this.state.login);
+    	AccountRef.once('value', snapshot => {
+      		let items=snapshot.val();
+      		console.log(items);
+      		if(items !== null){
+      			this.setState({
+      				isContain:true
+      			});
+      		} else {
+      			this.setState({
+      				isContain:false
+      			});
+      			this.props.send(this.state);
+      			this.clearForm();
+      		}
+    	});
 	}
 
 	handleInputChange = event => {
@@ -38,31 +65,33 @@ class CreateAccount extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<NavLink to="/menu"className="Link" activeClassName="Link--Active">
-					<div className="Sidebar__Menu">
-						<div className="Sidebar__Chat__Border">
+			<div className="Sidebar">
+				<div className="CreateAcccount">
+					<NavLink to="/menu"className="Link" activeClassName="Link--Active">
+						<div className="Sidebar__Menu">
 							<div className="Title__Text">Назад</div>
 						</div>
-					</div>
-				</NavLink>
-				<br/>
-				<FormColumn onSubmit={this.handleSubmit}>
-					<FormText name="name" 
-					onChange={this.handleInputChange}
-					value={this.state.name}
-					placeholder="Введите Имя"/>
-					<FormText name="login" 
-					onChange={this.handleInputChange}
-					value={this.state.login}
-					placeholder="Введите Логин"/>
-					<FormText name="password" 
-					onChange={this.handleInputChange}
-					value={this.state.password}
-					placeholder="Введите Пароль"/>
+					</NavLink>
 					<br/>
-					<Button type="submit">Создать аккаунт</Button>
-				</FormColumn>
+					<FormColumn onSubmit={this.handleSubmit}>
+						<FormText name="name" 
+						onChange={this.handleInputChange}
+						value={this.state.name}
+						placeholder="Введите Имя"/>
+						<FormText name="login" 
+						onChange={this.handleInputChange}
+						value={this.state.login}
+						placeholder="Введите Логин"/>
+						<FormText name="password"
+						onChange={this.handleInputChange}
+						value={this.state.password}
+						placeholder="Введите Пароль"/>
+						<br/>
+						<Button type="submit">Создать аккаунт</Button>
+					</FormColumn>
+					{this.state.isContain ? <div>Аккаунт с таким логином уже существует</div>
+						:<div></div>}
+				</div>
 			</div>
 		);
 	}

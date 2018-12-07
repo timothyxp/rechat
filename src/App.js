@@ -6,6 +6,7 @@ import MessageBox from './components/MessageBox/MessageBox.js';
 import Menu from './components/Menu/Menu.js';
 import CreateAccount from './components/Menu/CreateAccount/createaccount.js';
 import Enter from './components/Menu/Enter/enter.js';
+import hashPassword from './HashPassword/hash.js';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 
 import database from './firebase/database.js'
@@ -31,8 +32,10 @@ class App extends Component {
   }
 
   createAccount = account => {
+    let password = hashPassword(account.password);
+    console.log(password);
     database.ref('accounts/'+account.login).set({
-        password:account.password,
+        password:password,
         accountId:this.state.accountId,
         name:account.name
       });
@@ -58,7 +61,6 @@ class App extends Component {
 
     MessageRef.on('value', snapshot => {
       let items = snapshot.val();
-      console.log(items);
       this.setState({
         messages:{...this.state.messages, ...items}
       });

@@ -8,4 +8,6 @@
 
 .Message__Text {
 	font-size: 15px;
+	max-width: 500px;
+	word-wrap: break-word;
 }

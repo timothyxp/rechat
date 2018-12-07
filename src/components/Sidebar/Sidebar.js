@@ -13,7 +13,7 @@ export default class Sidebar extends React.Component {
 							<div className="Title__Text">Меню</div>
 						</div>
 					</NavLink>
-					<div className="Chat-Active">
+					<div className="Sidebar__Menu">
 						<div className="Title__Text">Чат 1</div>
 					</div>
 				</div>

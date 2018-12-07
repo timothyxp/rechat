@@ -21,7 +21,7 @@ class Message extends React.Component {
 		return(
 			<div className="Message">
 				<div><Name color={this.props.color}>{this.props.name}</Name></div>
-				<span className="Message__Text">{this.props.children}</span>
+				<div className="Message__Text">{this.props.children}</div>
 			</div>
 		);
 	}
