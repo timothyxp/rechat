@@ -9,14 +9,13 @@ import Enter from './components/Menu/Enter/enter.js';
 import hashPassword from './HashPassword/hash.js';
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom';
 
-import database from './firebase/database.js'
+import database from './firebase/database.js';
 
 import './App.css'
 
 class App extends Component {
   constructor() {
     super();
-
     this.state = {
       accountId:Math.floor(Math.random()*(1e9)),
       name:'user',
@@ -33,7 +32,7 @@ class App extends Component {
 
   createAccount = account => {
     let password = hashPassword(account.password);
-    console.log(password);
+
     database.ref('accounts/'+account.login).set({
         password:password,
         accountId:this.state.accountId,

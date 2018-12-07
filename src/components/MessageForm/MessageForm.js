@@ -19,7 +19,7 @@ export default class MessageFrom extends React.Component {
 	}
 
 	validationForm() {
-		if(this.state.message==='')
+		if(this.state.message === '' || this.state.message.length > 200)
 			return false;
 		return true;
 	}

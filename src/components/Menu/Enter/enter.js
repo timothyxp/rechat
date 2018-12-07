@@ -63,6 +63,7 @@ export default class Enter extends React.Component {
       			});
       		}
     	});
+
 	}
 
 	handleInputChange = event => {
@@ -89,7 +90,8 @@ export default class Enter extends React.Component {
 						<FormText name="password" 
 						onChange={this.handleInputChange}
 						value={this.state.password}
-						placeholder="Введите Пароль"/>
+						placeholder="Введите Пароль"
+						type="password"/>
 						<br/>
 						<Button type="submit">Войти</Button>
 					</FormColumn>

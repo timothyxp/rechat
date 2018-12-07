@@ -7,7 +7,7 @@ export default class FormText extends React.Component {
 		return (
 			<input 
 			className="Input"
-			type="text"
+			type={this.props.type ? this.props.type : "text"}
 			 placeholder={this.props.placeholder} 
 			 onChange={this.props.onChange}
 			 value={this.props.value}

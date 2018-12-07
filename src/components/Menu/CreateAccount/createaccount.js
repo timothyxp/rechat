@@ -9,6 +9,7 @@ import database from '../../../firebase/database.js';
 class CreateAccount extends React.Component {
 	constructor() {
 		super();
+		console.log('create');
 		this.state = {
 			name:'',
 			login:'',
@@ -28,9 +29,21 @@ class CreateAccount extends React.Component {
 	validationForm() {
 		if(this.state.name==='' 
 			|| this.state.pasword==='' 
-			|| this.state.login==='')
+			|| this.state.login===''
+			|| this.state.name.length>15
+			|| this.state.login.length>15
+			|| this.state.password>20)
 			return false;
 		return true;
+	}
+
+	shouldComponentUpdate(nextProps, nextState, nextContext) {
+		console.log(this.state);
+		console.log(nextState);
+		if(this.state!==nextState){
+			return true;
+		}
+		return false;
 	}
 
 	handleSubmit = event => {
@@ -85,7 +98,8 @@ class CreateAccount extends React.Component {
 						<FormText name="password"
 						onChange={this.handleInputChange}
 						value={this.state.password}
-						placeholder="Введите Пароль"/>
+						placeholder="Введите Пароль"
+						type="password"/>
 						<br/>
 						<Button type="submit">Создать аккаунт</Button>
 					</FormColumn>
